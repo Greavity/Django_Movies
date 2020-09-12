@@ -1,6 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def hello_world(request):
-    return HttpResponse("Hello World.")
+    return render(
+        request,
+        template_name='hello.html',
+        context={'adjectives': ['beatuiful', 'cruel', 'wonderful']},
+    )
+
+
+def movies(request):
+    return render(
+        request,
+        template_name='movies.html'
+    )
