@@ -4,9 +4,11 @@
     <h1>Welcome to Django Movies!</h1>
     <ul>
             {% for movie in movies %}
-                <li>
-                    {{ movie.title}} ({{ movie.released.year}}) by {{movie.director}}, genre: {{movie.genre.name}}
-                </li>
+                {% if movie.genre.age_limit != limits.adults %}
+                    <li>
+                        {{ movie.title}} ({{ movie.released.year}}) by {{movie.director}}, genre: {{movie.genre.name}}
+                    </li>
+                {% endif %}
             {% endfor %}
     </ul>
 {% endblock %}

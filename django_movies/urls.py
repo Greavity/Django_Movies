@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-from core.views import hello_world, movies
+from core.views import hello_world, MovieView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', hello_world),
-    path('home/', movies, name='movies'),
+    path('', MovieView.as_view(), name='index'),
 ]
