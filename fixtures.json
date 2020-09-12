@@ -1,0 +1,181 @@
+[
+  {
+    "model": "core.genre",
+    "pk": 1,
+    "fields": {
+      "name": "Comedy",
+      "age_limit": 7
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 2,
+    "fields": {
+      "name": "Fantasy",
+      "age_limit": 12
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 3,
+    "fields": {
+      "name": "Sci-Fiction",
+      "age_limit": 16
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 4,
+    "fields": {
+      "name": "Horror",
+      "age_limit": 18
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 5,
+    "fields": {
+      "name": "Bajka",
+      "age_limit": 0
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 6,
+    "fields": {
+      "name": "Dramat",
+      "age_limit": 16
+    }
+  },
+  {
+    "model": "core.genre",
+    "pk": 7,
+    "fields": {
+      "name": "Wojenny",
+      "age_limit": 16
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 1,
+    "fields": {
+      "first_name": "Roman",
+      "last_name": "Polanski"
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 2,
+    "fields": {
+      "first_name": "Steven",
+      "last_name": "Spielberg"
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 3,
+    "fields": {
+      "first_name": "Andrzej",
+      "last_name": "Wajda"
+    }
+  },
+  {
+    "model": "core.director",
+    "pk": 4,
+    "fields": {
+      "first_name": "Quentin",
+      "last_name": "Tarantino"
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 1,
+    "fields": {
+      "title": "Django",
+      "rating": 9,
+      "released": "2015-07-12",
+      "description": null,
+      "created": "2020-09-05T12:38:10.443Z",
+      "genre": 1,
+      "director": 1
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 2,
+    "fields": {
+      "title": "Rambo",
+      "rating": 9,
+      "released": "1989-05-30",
+      "description": null,
+      "created": "2020-09-01T12:51:59.337Z",
+      "genre": 7,
+      "director": 3
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 3,
+    "fields": {
+      "title": "Django",
+      "rating": 2,
+      "released": "2016-08-11",
+      "description": null,
+      "created": "2020-09-03T12:53:30.829Z",
+      "genre": 1,
+      "director": 2
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 4,
+    "fields": {
+      "title": "Constantin",
+      "rating": 10,
+      "released": "2008-09-17",
+      "description": null,
+      "created": "2020-09-03T12:53:30.829Z",
+      "genre": 3,
+      "director": 4
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 5,
+    "fields": {
+      "title": "LOTR",
+      "rating": 10,
+      "released": "2000-12-23",
+      "description": null,
+      "created": "2020-09-05T13:07:48.492Z",
+      "genre": 2,
+      "director": 1
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 7,
+    "fields": {
+      "title": "Pila",
+      "rating": 9,
+      "released": "2003-04-05",
+      "description": null,
+      "created": "2020-09-03T12:53:30.829Z",
+      "genre": 4,
+      "director": 3
+    }
+  },
+  {
+    "model": "core.movie",
+    "pk": 8,
+    "fields": {
+      "title": "Gra",
+      "rating": 9,
+      "released": "1998-06-24",
+      "description": null,
+      "created": "2020-09-01T12:51:59.337Z",
+      "genre": 6,
+      "director": 2
+    }
+  }
+]
