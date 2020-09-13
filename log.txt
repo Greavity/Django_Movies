@@ -1,0 +1,5 @@
+INFO:core.views:Successfully added new movie: Shrek 3
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
