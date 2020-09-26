@@ -3,6 +3,8 @@ from core.models import Genre, Movie, Country, Director
 from django.core.exceptions import ValidationError
 import re
 from datetime import date
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Row, Column, Submit
 
 
 def capitalized_validator(value):
@@ -35,6 +37,18 @@ class MovieForm(forms.ModelForm):
     title = forms.CharField(validators=[capitalized_validator])
     rating = forms.IntegerField(min_value=1, max_value=10)
     released = PastMonthField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'title',
+            Row(Column('genre'), Column('rating'), Column('released')),
+            'director',
+            'description',
+            'countries',
+            Submit('submit', 'Submit'),
+        )
 
     def clean_description(self):
         initial = self.cleaned_data['description']

@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from core.forms import MovieForm
 import logging
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+
 
 
 def hello_world(request):
@@ -50,7 +52,12 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 
-class MovieCreateView(CreateView):
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MovieCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
     title = 'Add Movie'              # <-- nie potrzebne raczej, pojawia sie w logerze
     template_name = 'form.html'
     form_class = MovieForm
@@ -65,7 +72,7 @@ class MovieCreateView(CreateView):
         return super().post(request, *args, **kwargs)
 
 
-class MovieUpdateView(UpdateView):
+class MovieUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
     template_name = 'form.html'
     model = Movie
     form_class = MovieForm
@@ -76,13 +83,16 @@ class MovieUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
-class MovieDeleteView(DeleteView):
+class MovieDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+    def test_func(self):
+        return super().test_func() and self.request.user.is_superuser
+
     template_name = 'movie_confirm_delete.html'
     model = Movie
     success_url = reverse_lazy('core:movie_list')
 
 
-class MovieListView(ListView):
+class MovieListView(ListView):   # <- zadanie domowe, user widzi tylko filmy dodane przez siebie (zrobic to w widoku, scope persmision)
     template_name = 'movie_list.html'
     model = Movie
 
@@ -91,6 +101,3 @@ class MovieDetailView(DetailView):
     template_name = 'movie_detail.html'
     model = Movie
 
-
-class IndexView(MovieListView):
-    template_name = 'index.html'
