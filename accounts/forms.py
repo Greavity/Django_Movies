@@ -4,7 +4,7 @@ from django.contrib.auth.forms import (
     AuthenticationForm, PasswordChangeForm, UserCreationForm
 )
 from django.db.transaction import atomic
-from django.forms import CharField, Form, Textarea
+from django.forms import CharField, Form, Textarea, IntegerField
 from .models import Profile
 from django.contrib.auth import login, authenticate
 
@@ -30,6 +30,7 @@ class SignUpForm(SubmittableForm, UserCreationForm):
         widget=Textarea,
         min_length=1,
     )
+    shoe_size = IntegerField()
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -38,16 +39,16 @@ class SignUpForm(SubmittableForm, UserCreationForm):
     class Meta(UserCreationForm.Meta):
         fields = ['username', 'first_name']
 
-    def save(self, commit=True):
-        self.instance.is_active = False
-        result = super().save(commit)
+    def save(self, commit=True, *args, **kwargs):
+        user = super().save(commit)
         biography = self.cleaned_data['biography']
-        profile = Profile(biography=biography, user=result)
+        shoe_size = self.cleaned_data['shoe_size']
+        profile = Profile(biography=biography, user=user, shoe_size=shoe_size)
+        profile.save()
         if commit:
-            profile.save()
             auth_user = authenticate(
                 username=self.cleaned_data['username'],
                 password=self.cleaned_data['password1']
             )
             login(self.request, auth_user)
-        return result
+        return user
